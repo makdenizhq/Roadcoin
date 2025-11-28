@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoadCoin - Sürdükçe Kazan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@solana/wallet-adapter-react-ui@0.9.35/styles.css" />
+    <script type="module">
+      // Solana Wallet Adapter requires a Buffer global.
+      import { Buffer } from 'buffer';
+      window.Buffer = Buffer;
+    </script>
+    <script>
+      // Global Error Handler to debug "Black Screen" issues
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error("Global Error:", message, error);
+        // Only show fatal errors if root is empty (app didn't start)
+        const root = document.getElementById('root');
+        if (root && root.innerHTML.trim() === '') {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:#ef4444;color:white;padding:20px;z-index:9999;font-family:sans-serif;';
+            errorDiv.innerHTML = '<h3>Application Error</h3><p>' + message + '</p>';
+            document.body.appendChild(errorDiv);
+        }
+      };
+
+      // Polyfill process for browser environment
+      window.process = window.process || { env: {} };
+      
+      // Tailwind Config
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              road: {
+                dark: '#0f172a',
+                accent: '#38bdf8',
+                green: '#34d399',
+                purple: '#818cf8'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow-x: hidden;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+      }
+      /* Solana Wallet Button Overrides */
+      .wallet-adapter-button {
+        background-color: transparent !important;
+        border: 2px solid #38bdf8 !important;
+        color: #38bdf8 !important;
+        font-weight: bold !important;
+        border-radius: 9999px !important;
+        padding: 0.5rem 1.5rem !important;
+        transition: all 0.2s ease-in-out !important;
+        line-height: 1.5rem !important; /* Fix alignment */
+      }
+      .wallet-adapter-button:not([disabled]):hover {
+        background-color: #38bdf8 !important;
+        color: #fff !important;
+      }
+      .wallet-adapter-button-trigger {
+        background-color: #38bdf8 !important;
+      }
+      .wallet-adapter-button-trigger:hover {
+        background-color: #0ea5e9 !important;
+      }
+      .wallet-adapter-button i {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "recharts": "https://esm.sh/recharts@2.12.7",
+    "framer-motion": "https://esm.sh/framer-motion@11.2.10",
+    "lucide-react": "https://esm.sh/lucide-react@0.395.0",
+    "@google/genai": "https://esm.sh/@google/genai@0.2.1",
+    "@solana/web3.js": "https://esm.sh/@solana/web3.js@1.91.4",
+    "@solana/wallet-adapter-base": "https://esm.sh/@solana/wallet-adapter-base@0.9.23",
+    "@solana/wallet-adapter-react": "https://esm.sh/@solana/wallet-adapter-react@0.15.35",
+    "@solana/wallet-adapter-react-ui": "https://esm.sh/@solana/wallet-adapter-react-ui@0.9.35",
+    "@solana/wallet-adapter-wallets": "https://esm.sh/@solana/wallet-adapter-wallets@0.19.32",
+    "buffer": "https://esm.sh/buffer@6.0.3",
+    "zustand": "https://esm.sh/zustand@4.5.2",
+    "eventemitter3": "https://esm.sh/eventemitter3@5.0.1",
+    "use-sync-external-store": "https://esm.sh/use-sync-external-store@1.2.0",
+    "use-sync-external-store/shim": "https://esm.sh/use-sync-external-store@1.2.0/shim",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+  </body>
+</html>
